@@ -7,11 +7,15 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { NavLinks } from "@/constants/NavLinks";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
   const { theme } = useTheme();
+  const pathname = usePathname();
+
   return (
-    <div className='sticky top-0 z-50 flex justify-between bg-secondaryBackground py-3 px-5 md:px-11'>
+    <div className='sticky top-0 z-50 flex justify-between items-center bg-secondaryBackground py-3 px-5 md:px-11'>
       <Link href={"/"}>
         <Image
           src={theme === "light" ? "/logo-2-light.svg" : "/logo-2-dark.svg"}
@@ -21,7 +25,39 @@ const NavBar = () => {
         />
       </Link>
 
-      <div className='flex gap-5'>
+      <div className='hidden lg:flex gap-5 items-center'>
+        {NavLinks.map((item) => (
+          <Link
+            key={item.title}
+            href={item.href}
+            className={`${
+              pathname === item.href ? "bg-gradient-to-t from-start to-end" : ""
+            } py-3 px-11 rounded-2xl`}
+          >
+            <div className='flex items-center gap-5'>
+              <Image
+                src={
+                  pathname === item.href
+                    ? item.whiteIcon
+                    : theme === "light"
+                    ? item.greyIcon
+                    : item.whiteIcon
+                }
+                alt={`${item.title} icon`}
+                height={25}
+                width={25}
+              />
+              {pathname === item.href ? (
+                <p className='text-white font-bold'>{item.title}</p>
+              ) : (
+                <></>
+              )}
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      <div className='flex gap-5 items-center'>
         <ThemeToggle />
         <SignedOut>
           <Link href={"/sign-in"}>
