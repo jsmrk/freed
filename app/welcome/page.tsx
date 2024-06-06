@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import NavBar from "@/components/NavBar";
 import WelcomeCard from "@/components/WelcomeCard";
 import { useTheme } from "next-themes";
+import NavBar from "@/components/Nav/NavBar";
 
 function Page() {
   const { theme } = useTheme();
@@ -34,9 +34,9 @@ function Page() {
               <div className='flex justify-center items-center'>
                 <Image
                   src={
-                    theme === "dark"
-                      ? "/welcome/title-dark.svg"
-                      : "/welcome/title-light.svg"
+                    theme === "light"
+                      ? "/welcome/title-light.svg"
+                      : "/welcome/title-dark.svg"
                   }
                   alt='Welcome logo'
                   height={600}

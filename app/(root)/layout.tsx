@@ -1,4 +1,4 @@
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Nav/NavBar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -13,7 +13,7 @@ export default async function Layout({
   return (
     <div className='min-h-screen w-full'>
       <NavBar />
-      <main className='w-full lg:px-52'>{children}</main>
+      <main className='h-full max-w-[1000px] m-auto'>{children}</main>
     </div>
   );
 }
