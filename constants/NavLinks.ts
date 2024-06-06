@@ -21,6 +21,6 @@ export const NavLinks = [
     title: "Write",
     whiteIcon: "/navbar/write-white.svg",
     greyIcon: "/navbar/write-gray.svg",
-    href: "/write",
+    href: "/donate",
   },
 ];
